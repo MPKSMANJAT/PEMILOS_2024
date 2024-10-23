@@ -10,18 +10,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         body {
-            background-image: url('bg .jpg'); /* Ganti dengan URL gambar Anda */
+            background-image: url('bg.jpg'); /* Ganti dengan URL gambar Anda */
             background-size: cover; /* Membuat gambar menutupi seluruh latar belakang */
             background-position: center; /* Memusatkan gambar */
             background-repeat: no-repeat; /* Menghindari pengulangan gambar */
             font-family: 'Arial', sans-serif;
             color: #fff; /* Ganti warna teks agar kontras dengan gambar */
             padding: 20px;
+            background-position-y: -1150px;
         }
 
         h2 {
             text-align: center; /* Memusatkan judul */
+            text-decoration-color: black;
             margin-bottom: 20px; /* Margin bawah untuk jarak */
+            color: white; /* Warna teks */
+            text-shadow: 
+                1px 1px 0 black, /* Outline atas kanan */
+                -1px -1px 0 black, /* Outline bawah kiri */
+                1px -1px 0 black, /* Outline atas kiri */
+                -1px 1px 0 black; /* Outline bawah kanan */
         }
 
         .photo-container {
@@ -106,7 +114,7 @@
     <div class="photo-container">
         <div class="photo">
             <p id="count4">0</p>
-            <img src="photo4.jpg" alt="Foto 4" onclick="incrementCounter(4)">
+            <img src="tidaksah.jpg" alt="Foto 4" onclick="incrementCounter(4)">
             <br>
             <button onclick="manualIncrement(4)">Tambah</button>
             <button onclick="manualDecrement(4)">Kurang</button>

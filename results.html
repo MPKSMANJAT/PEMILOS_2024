@@ -13,7 +13,7 @@
 
     <style>
         body {
-            background-image: url('bg .jpg');/* Ganti dengan URL gambar Anda */
+            background-image: url('bg.jpg');/* Ganti dengan URL gambar Anda */
             background-size: cover; /* Membuat gambar menutupi seluruh latar belakang */
             background-position: center;/* Memusatkan gambar */
             font-family: 'Arial', sans-serif;
@@ -21,6 +21,7 @@
             padding: 20px;
             height: 50vh;
             margin: 0;
+            background-position-y: -1150px;
         }
 
         h2 {
@@ -30,6 +31,14 @@
             color: #fffa65;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
         }
+        h4 {
+            color: white; /* Warna teks */
+            text-shadow: 
+                1px 1px 0 black, /* Outline atas kanan */
+                -1px -1px 0 black, /* Outline bawah kiri */
+                1px -1px 0 black, /* Outline atas kiri */
+                -1px 1px 0 black; /* Outline bawah kanan */
+        }
 
         p {
             font-size: 1.2em;
@@ -38,6 +47,12 @@
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
+            color: white; /* Warna teks */
+            text-shadow: 
+                1px 1px 0 black, /* Outline atas kanan */
+                -1px -1px 0 black, /* Outline bawah kiri */
+                1px -1px 0 black, /* Outline atas kiri */
+                -1px 1px 0 black; /* Outline bawah kanan */
         }
 
         .container {
@@ -91,16 +106,16 @@
         <h2>Hasil Voting <span id="username"></span></h2>
 
         <!-- Menampilkan hasil klik untuk Foto 1 hingga 5 -->
-        <p>Jumlah klik untuk Foto 1: <span id="result1"></span></p>
-        <p>Jumlah klik untuk Foto 2: <span id="result2"></span></p>
-        <p>Jumlah klik untuk Foto 3: <span id="result3"></span></p>
-        <p>Jumlah klik untuk Foto 4: <span id="result4"></span></p>
-        <p>Jumlah klik untuk Foto 5: <span id="result5"></span></p>
+        <p>Jumlah Surat Suara Paslon 1: <span id="result1"></span></p>
+        <p>Jumlah Surat Suara Paslon 2: <span id="result2"></span></p>
+        <p>Jumlah Surat Suara Paslon 3: <span id="result3"></span></p>
+        <p>Jumlah Surat Suara Rusak: <span id="result4"></span></p>
+        <p>Jumlah Surat Suara Tidak Sah: <span id="result5"></span></p>
         <p>Total Klik: <span id="totalClicks"></span></p>
 
         <!-- Tempatkan Canvas untuk diagram batang -->
         <div id="chartContainer">
-            <h4>Diagram Batang Hasil Voting</h4>
+            <h4>Diagram Surat Suara Paslon</h4>
             <canvas id="voteChart"></canvas>
         </div>
 

@@ -9,7 +9,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
-            background-image: url('bg .jpg'); /* Ganti dengan URL gambar Anda */
+            background-image: url('bg.jpg'); /* Ganti dengan URL gambar Anda */
             background-size: cover; /* Membuat gambar menutupi seluruh latar belakang */
             background-position: center; /* Memusatkan gambar */
             background-repeat: no-repeat; /* Menghindari pengulangan gambar */
@@ -20,6 +20,7 @@
             display: flex; /* Menggunakan flexbox untuk memusatkan konten */
             justify-content: center; /* Memusatkan secara horizontal */
             align-items: center; /* Memusatkan secara vertikal */
+            background-position-y: -1150px;
         }
 
         .login-container {
@@ -36,6 +37,11 @@
             margin: 10px 0; /* Margin atas dan bawah */
             border: none; /* Menghilangkan border default */
             border-radius: 5px; /* Sudut input melengkung */
+            color: rgba(0, 0, 0,); /* Warna hitam sedikit abu */
+        }
+
+        input::placeholder {
+            color: rgba(0, 0, 0, 0.5); /* Warna hitam sedikit abu */
         }
 
         button {
@@ -58,9 +64,9 @@
     <div class="login-container">
         <h2>Halaman Login</h2>
         <form id="loginForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <button type="submit">Login</button>
+            <label for="username">MASUKAN TPS:</label>
+            <input type="text" id="username" name="username" placeholder="Contoh: TPS 1" required>
+            <button type="submit">Lanjut</button>
         </form>
     </div>
 
