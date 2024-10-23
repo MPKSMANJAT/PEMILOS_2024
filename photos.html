@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penghitung Klik Foto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            background-image: url('bg .jpg'); /* Ganti dengan URL gambar Anda */
+            background-size: cover; /* Membuat gambar menutupi seluruh latar belakang */
+            background-position: center; /* Memusatkan gambar */
+            background-repeat: no-repeat; /* Menghindari pengulangan gambar */
+            font-family: 'Arial', sans-serif;
+            color: #fff; /* Ganti warna teks agar kontras dengan gambar */
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center; /* Memusatkan judul */
+            margin-bottom: 20px; /* Margin bawah untuk jarak */
+        }
+
+        .photo-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .photo {
+            display: inline-block;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Latar belakang transparan untuk foto */
+            padding: 15px; /* Padding di dalam kontainer foto */
+            border-radius: 10px; /* Sudut kontainer foto melengkung */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Efek bayangan */
+        }
+
+        .photo img {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            border-radius: 10px; /* Sudut gambar melengkung */
+        }
+
+        button {
+            margin: 5px; /* Margin tombol */
+            padding: 5px 10px; /* Padding di dalam tombol */
+            border: none; /* Menghilangkan border default */
+            border-radius: 5px; /* Sudut tombol melengkung */
+            background-color: #007bff; /* Warna tombol */
+            color: #fff; /* Warna teks tombol */
+            cursor: pointer; /* Mengubah kursor saat hover */
+            transition: background-color 0.3s; /* Transisi untuk efek hover */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Warna saat hover */
+        }
+
+        .submit-button {
+            display: block; /* Membuat tombol kirim tampil di tengah */
+            margin: 20px auto; /* Margin otomatis untuk memusatkan */
+            padding: 10px 20px; /* Padding tombol kirim */
+            background-color: #28a745; /* Warna hijau untuk tombol kirim */
+        }
+
+        .submit-button:hover {
+            background-color: #218838; /* Warna saat hover tombol kirim */
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Selamat Datang, <span id="username"></span></h2>
+
+    <!-- Baris pertama untuk tiga foto -->
+    <div class="photo-container">
+        <div class="photo">
+            <p id="count1">0</p>
+            <img src="Paslon 1.jpg" alt="Foto 1" onclick="incrementCounter(1)">
+            <br>
+            <button onclick="manualIncrement(1)">Tambah</button>
+            <button onclick="manualDecrement(1)">Kurang</button>
+        </div>
+        <div class="photo">
+            <p id="count2">0</p>
+            <img src="Paslon 2.jpg" alt="Foto 2" onclick="incrementCounter(2)">
+            <br>
+            <button onclick="manualIncrement(2)">Tambah</button>
+            <button onclick="manualDecrement(2)">Kurang</button>
+        </div>
+        <div class="photo">
+            <p id="count3">0</p>
+            <img src="Paslon 3.jpg" alt="Foto 3" onclick="incrementCounter(3)">
+            <br>
+            <button onclick="manualIncrement(3)">Tambah</button>
+            <button onclick="manualDecrement(3)">Kurang</button>
+        </div>
+    </div>
+
+    <!-- Baris kedua untuk dua foto tambahan -->
+    <div class="photo-container">
+        <div class="photo">
+            <p id="count4">0</p>
+            <img src="photo4.jpg" alt="Foto 4" onclick="incrementCounter(4)">
+            <br>
+            <button onclick="manualIncrement(4)">Tambah</button>
+            <button onclick="manualDecrement(4)">Kurang</button>
+        </div>
+        <div class="photo">
+            <p id="count5">0</p>
+            <img src="photo5.jpg" alt="Foto 5" onclick="incrementCounter(5)">
+            <br>
+            <button onclick="manualIncrement(5)">Tambah</button>
+            <button onclick="manualDecrement(5)">Kurang</button>
+        </div>
+    </div>
+
+    <button class="submit-button" onclick="submitResults()">Kirim</button>
+
+    <script>
+        // Menampilkan username
+        document.getElementById('username').textContent = localStorage.getItem('username') || 'Pengguna';
+
+        // Fungsi untuk menambah penghitung melalui klik pada foto
+        function incrementCounter(photoNumber) {
+            const counter = document.getElementById('count' + photoNumber);
+            let currentCount = parseInt(counter.textContent);
+            currentCount += 1; // Tambah jumlah klik
+            counter.textContent = currentCount; // Update tampilan
+
+            // Simpan hasil ke localStorage
+            localStorage.setItem('count' + photoNumber, currentCount);
+        }
+
+        // Fungsi manual untuk tombol tambah
+        function manualIncrement(photoNumber) {
+            const counter = document.getElementById('count' + photoNumber);
+            let currentCount = parseInt(counter.textContent);
+            currentCount += 1; // Tambah 1 klik
+            counter.textContent = currentCount;
+
+            // Simpan hasil ke localStorage
+            localStorage.setItem('count' + photoNumber, currentCount);
+        }
+
+        // Fungsi manual untuk tombol kurang
+        function manualDecrement(photoNumber) {
+            const counter = document.getElementById('count' + photoNumber);
+            let currentCount = parseInt(counter.textContent);
+            if (currentCount > 0) {
+                currentCount -= 1; // Kurangi 1 klik jika lebih dari 0
+            }
+            counter.textContent = currentCount;
+
+            // Simpan hasil ke localStorage
+            localStorage.setItem('count' + photoNumber, currentCount);
+        }
+
+        // Fungsi untuk mengirim hasil dan buat file Excel
+        function submitResults() {
+            const username = localStorage.getItem('username');
+            const count1 = parseInt(localStorage.getItem('count1')) || 0;
+            const count2 = parseInt(localStorage.getItem('count2')) || 0;
+            const count3 = parseInt(localStorage.getItem('count3')) || 0;
+            const count4 = parseInt(localStorage.getItem('count4')) || 0;
+            const count5 = parseInt(localStorage.getItem('count5')) || 0;
+
+            // Hitung total klik
+            const totalClicks = count1 + count2 + count3 + count4 + count5;
+
+            // Simpan total klik ke localStorage
+            localStorage.setItem('totalClicks', totalClicks);
+
+            // Data yang akan dikirimkan ke Apps Script
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('count1', count1);
+            formData.append('count2', count2);
+            formData.append('count3', count3);
+            formData.append('count4', count4);
+            formData.append('count5', count5);
+            formData.append('totalClicks', totalClicks);
+
+            // Ganti URL berikut dengan URL Web App dari Apps Script Anda https://script.google.com/macros/s/AKfycbwENDideMxVvfm6uDjZ1iL8-D84YIT8qbQXksIIky4GPUTbWjA-8is1F04377dL_WFL/exec
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxVWHc_6-efcWrzcX_TY3B5zDLITrBksgU4atV3XP_JGQp8SEdvCsJPMt06b9QnpU8O/exec';
+            
+            // Kirim data ke Google Apps Script
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Redirect ke halaman hasil setelah sukses
+                    window.location.href = "results.html";
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+
+</html>
